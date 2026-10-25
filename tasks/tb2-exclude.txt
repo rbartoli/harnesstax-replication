@@ -1,0 +1,7 @@
+# Terminal-Bench 2.0 tasks excluded from every cell: only those whose oracle (reference solution)
+# fails under Harbor 0.23.0, so no harness can be scored on them. Nothing else is excluded —
+# HarnessTax states no exclusions ("30 unique randomly sampled tasks").
+build-pov-ray
+build-cython-ext
+mcmc-sampling-stan
+build-pmars

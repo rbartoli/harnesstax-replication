@@ -1,0 +1,14 @@
+// HarnessTax turn cap for Pi: abort the run once the model has taken MAX_TURNS turns
+// (one turn = one LLM response + its tool calls, Pi's own definition). Mirrors the paper's
+// "cap each attempt at 100 agent turns"; placed in ~/.pi/agent/extensions by agents/pi_codex.py.
+const MAX_TURNS = __MAX_TURNS__;
+export default function (pi: any) {
+  let turns = 0;
+  pi.on("turn_end", async (_event: any, ctx: any) => {
+    turns += 1;
+    if (turns >= MAX_TURNS) {
+      console.error(`[turn-cap] ${turns} turns reached, aborting`);
+      ctx.abort();
+    }
+  });
+}
